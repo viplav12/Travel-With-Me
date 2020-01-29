@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "267953686848",
+    "firebase_url": "https://travel-with-me-636f5.firebaseio.com",
+    "project_id": "travel-with-me-636f5",
+    "storage_bucket": "travel-with-me-636f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267953686848:android:cad33716dede20cc9952a5",
+        "android_client_info": {
+          "package_name": "com.rail.travelwithme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267953686848-cfu5mpv3srlr960tjvcjscose2kj27j6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rail.travelwithme",
+            "certificate_hash": "27dff83fc2428e337baacceebc33d456d44ca9b1"
+          }
+        },
+        {
+          "client_id": "267953686848-niqm20up6694rttddca762743enm8pe4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rail.travelwithme",
+            "certificate_hash": "e80d15427206697a231573f984042dcbc763ef19"
+          }
+        },
+        {
+          "client_id": "267953686848-eeked430li4bb5ogol2feqfb6tlrqorf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Baas3Tc1zTzGxBqtc714GZ4Lq-dHe9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267953686848-eeked430li4bb5ogol2feqfb6tlrqorf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

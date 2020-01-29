@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_mapview">
+
+    <fragment
+        android:id="@+id/navigation_mapview"
+        android:name="com.rail.travelwithme.ui.mapview.MapViewFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_mapview" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.rail.travelwithme.ui.progressbarview.ProgressbarFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_progressbar" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.rail.travelwithme.ui.saveeditview.EditViewFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_prgressbarview" />
+
+    <fragment
+        android:id="@+id/navigation_webUI"
+        android:name="com.rail.travelwithme.ui.webui.WebUIFragment"
+        android:label="@string/webui"
+        tools:layout="@layout/fragment_webui" />
+</navigation>
