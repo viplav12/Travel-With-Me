@@ -54,24 +54,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mapview, null, false);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-
-                    mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
-                    getLocationPermission();
-                    fetchLastLocation();
-
-
-                } catch (Exception ignored) {
-
-                }
-            }
-        }).start();
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        fetchLastLocation();
         return view;
     }
 
@@ -159,36 +143,4 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         return database.child(dbChildName);
     }
-
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        if (ContextCompat.checkSelfPermission(this.getActivity().getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mLocationPermissionGranted = true;
-                }
-        }
-    }
-
-
 }

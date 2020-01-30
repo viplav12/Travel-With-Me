@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_mapview" />
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_progressbar"
         android:name="com.rail.travelwithme.ui.progressbarview.ProgressbarFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_progressbar" />
