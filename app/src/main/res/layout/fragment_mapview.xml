@@ -9,7 +9,34 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="fill_parent">-->
+<!--            <TextView-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:hint="Distance"-->
+<!--                android:id="@+id/email_hint"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:layout_toLeftOf="@+id/do_email_picker"-->
+<!--                android:layout_alignParentLeft="true" />-->
+
+<!--            <Button-->
+<!--                style="?android:buttonBarButtonStyle"-->
+<!--                android:id="@+id/do_email_picker"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="0"-->
+<!--                android:text="Distance between nearBy location"-->
+<!--                android:layout_alignParentLeft="true"-->
+<!--                android:textSize="26sp" />-->
+<!--        </LinearLayout>-->
+
+    </fragment>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,11 +25,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.maps.android.SphericalUtil;
+import com.rail.travelwithme.MainActivity;
 import com.rail.travelwithme.R;
 import com.rail.travelwithme.data.AppLocation;
 
@@ -40,6 +44,9 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
     Location currentLocation;
     private GoogleMap mMap;
     private Marker mNewLocation;
+    private Polyline currentPolyline;
+    Button getDirection;
+
 
     private static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
@@ -56,6 +63,10 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_mapview, null, false);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
         fetchLastLocation();
+
+
+
+
         return view;
     }
 
@@ -99,9 +110,10 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
 
         LatLng nearByPosition = new LatLng(nearbyLatitude, nearbyLongitude);
 
-        mNewLocation = mMap.addMarker(new MarkerOptions()
-                .position(nearByPosition)
-                .title("NearByLocation")
+        MarkerOptions nearBymarkerOptions = new MarkerOptions().position(nearByPosition)
+                .title("Near By Location");
+
+        mNewLocation = mMap.addMarker(nearBymarkerOptions
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                 .draggable(true));
 
@@ -111,21 +123,32 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
                 Double.toString(latLng.latitude),
                 Double.toString(latLng.longitude));
 
-        Log.i("info", calculateDistance(latLng,
-                nearByPosition) + " : " + ts + " : "
-        );
+//        Log.i("info", calculateDistance(latLng,
+//                nearByPosition) + " : " + ts + " : "
+//        );
 
-        calculateDistance(latLng, nearByPosition);
+//        calculateDistance(latLng, nearByPosition);
+
+//        getDirectionxyz(markerOptions, nearBymarkerOptions);
     }
 
-    private double calculateDistance(LatLng latLng, LatLng nearByPosition) {
+    private void calculateDistance(LatLng latLng, LatLng nearByPosition) {
         double distance = SphericalUtil.computeDistanceBetween(latLng, nearByPosition) / 1000;
         SphericalUtil.interpolate(latLng, nearByPosition, 0.5);
         Toast toast = Toast.makeText(getActivity(),
                 "This distance between your current location and destination is: " +
                         "" + round(distance, 2) + " KM", Toast.LENGTH_LONG);
         toast.show();
-        return distance;
+
+        MarkerOptions origin = new MarkerOptions().position(latLng)
+                .title("I am here");
+
+        MarkerOptions destination = new MarkerOptions().position(nearByPosition)
+                .title("Near By Location");
+//        getDirection = getView().findViewById(R.id.do_email_picker);
+        new FetchURL(getActivity()).execute(getUrl(origin.getPosition(), destination.getPosition(), "driving"), "driving");
+
+//        return distance;
     }
 
     private void writeNewLocation(String timestamp, String latitute, String longitute) {
@@ -143,4 +166,38 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         return database.child(dbChildName);
     }
+
+//    private void getDirectionxyz(final MarkerOptions origin, final MarkerOptions destination){
+//        getDirection = getView().findViewById(R.id.do_email_picker);
+//        getDirection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                new FetchURL(getActivity()).execute(getUrl(origin.getPosition(), destination.getPosition(), "driving"), "driving");
+//            }
+//        });
+//    }
+
+    private String getUrl(LatLng origin, LatLng dest, String directionMode) {
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Mode
+        String mode = "mode=" + directionMode;
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
+        // Output format
+        String output = "json";
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.map_key);
+        return url;
+    }
+
+//    @Override
+//    public void onTaskDone(Object... values) {
+//        if (currentPolyline != null)
+//            currentPolyline.remove();
+//        currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
+//    }
+
 }

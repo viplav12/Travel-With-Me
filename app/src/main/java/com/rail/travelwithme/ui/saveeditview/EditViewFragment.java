@@ -41,7 +41,7 @@ public class EditViewFragment extends Fragment {
         editViewModel =
                 ViewModelProviders.of(this).get(EditViewModel.class);
         View root = inflater.inflate(R.layout.fragment_prgressbarview, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        final TextView textView = root.findViewById(R.id.text_progressbar);
 
         userProvidedText = root.findViewById(R.id.userProvidedText);
 

@@ -2,7 +2,7 @@
     <string name="app_name">Travel With Me</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Map</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_edittextview">Edit text View</string>
     <string name="submit">Submit</string>
     <string name="webui">WebUi</string>
 </resources>

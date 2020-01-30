@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_progressbar,
                 R.id.navigation_mapview,
-                R.id.navigation_notifications, R.id.navigation_webUI)
+                R.id.navigation_edittextview, R.id.navigation_webUI)
                 .build();
 
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
